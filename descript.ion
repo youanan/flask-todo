@@ -1,0 +1,6 @@
+app app包目录
+config.py 应用配置信息，比如数据库配置
+manage.py 脚本，比如启动服务器，与数据库交互
+README.md 项目说明
+run.py 项目运行脚本
+requirenments.txt 项目依赖

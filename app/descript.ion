@@ -1,0 +1,5 @@
+__init__.py 初始化app包
+models.py 数据模型
+static 静态文件目录
+views.py 视图
+templates 模板目录
