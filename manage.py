@@ -9,7 +9,7 @@ manager = Manager(app)
 
 @manager.command
 def save_todo():
-    todo = Todo(content = "My first todo at 1")
+    todo = Todo(content = "todolist-0001")
     todo.save()
 
 
@@ -19,3 +19,16 @@ manager.add_command("runserver",
 
 if __name__ == "__main__":
     manager.run()
+
+
+
+
+
+
+
+
+
+
+
+
+
