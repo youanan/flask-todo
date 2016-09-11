@@ -17,7 +17,7 @@ def add():
         content = form.content.data
         todo = Todo(content=content)
         todo.save()
-    todos = Todo.objects.all()
+    todos = Todo.objects.order_by('-time')
     return render_template("index.html", todos=todos, form=form)
 
 
@@ -27,8 +27,8 @@ def done(todo_id):
     todo = Todo.objects.get_or_404(id=todo_id)
     todo.status = 1
     todo.save()
-    todos = Todo.objects.all()
-    return render_template("index.html",todos=todos, form=form)
+    todos = Todo.objects.order_by('-time')
+    return render_template("index.html", todos=todos, form=form)
 
 
 @app.route('/undone/<string:todo_id>')
@@ -37,8 +37,8 @@ def undone(todo_id):
     todo = Todo.objects.get_or_404(id=todo_id)
     todo.status = 0
     todo.save()
-    todos = Todo.objects.all()
-    return render_template("index.html",todos=todos, form=form)
+    todos = Todo.objects.order_by('-time')
+    return render_template("index.html", todos=todos, form=form)
 
 
 @app.route('/delete/<string:todo_id>')
@@ -46,6 +46,11 @@ def delete(todo_id):
     form = TodoForm()
     todo = Todo.objects.get_or_404(id=todo_id)
     todo.delete()
-    todos = Todo.objects.all()
-    return render_template('index.html',todos=todos, form=form)
+    todos = Todo.objects.order_by('-time')
+    return render_template('index.html', todos=todos, form=form)
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html'), 404
 
